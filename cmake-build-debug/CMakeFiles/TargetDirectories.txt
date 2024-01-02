@@ -1,0 +1,4 @@
+/Users/ryosuke/CLionProjects/FortifyVOS/cmake-build-debug/CMakeFiles/kernel.elf.dir
+/Users/ryosuke/CLionProjects/FortifyVOS/cmake-build-debug/CMakeFiles/run.dir
+/Users/ryosuke/CLionProjects/FortifyVOS/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ryosuke/CLionProjects/FortifyVOS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
