@@ -1,3 +1,5 @@
+/*	$OpenBSD: _types.h,v 1.10 2022/08/06 13:31:13 semarie Exp $	*/
+
 /*-
  * Copyright (c) 1990, 1993
  *	The Regents of the University of California.  All rights reserved.
@@ -58,36 +60,36 @@ typedef struct label_t {
 #define	_MAX_PAGE_SHIFT		12	/* same as PAGE_SHIFT */
 
 /* 7.18.1.1 Exact-width integer types */
-typedef	signed char		__int8_t;
-typedef	unsigned char		__uint8_t;
-typedef	short			__int16_t;
-typedef	unsigned short		__uint16_t;
-typedef	int			__int32_t;
-typedef	unsigned int		__uint32_t;
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef short __int16_t;
+typedef unsigned short __uint16_t;
+typedef int __int32_t;
+typedef unsigned int __uint32_t;
 /* LONGLONG */
-typedef	long long		__int64_t;
+typedef long long __int64_t;
 /* LONGLONG */
-typedef	unsigned long long	__uint64_t;
+typedef unsigned long long __uint64_t;
 
 /* 7.18.1.2 Minimum-width integer types */
-typedef	__int8_t		__int_least8_t;
-typedef	__uint8_t		__uint_least8_t;
-typedef	__int16_t		__int_least16_t;
-typedef	__uint16_t		__uint_least16_t;
-typedef	__int32_t		__int_least32_t;
-typedef	__uint32_t		__uint_least32_t;
-typedef	__int64_t		__int_least64_t;
-typedef	__uint64_t		__uint_least64_t;
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
 
 /* 7.18.1.3 Fastest minimum-width integer types */
-typedef	__int32_t		__int_fast8_t;
-typedef	__uint32_t		__uint_fast8_t;
-typedef	__int32_t		__int_fast16_t;
-typedef	__uint32_t		__uint_fast16_t;
-typedef	__int32_t		__int_fast32_t;
-typedef	__uint32_t		__uint_fast32_t;
-typedef	__int64_t		__int_fast64_t;
-typedef	__uint64_t		__uint_fast64_t;
+typedef __int32_t __int_fast8_t;
+typedef __uint32_t __uint_fast8_t;
+typedef __int32_t __int_fast16_t;
+typedef __uint32_t __uint_fast16_t;
+typedef __int32_t __int_fast32_t;
+typedef __uint32_t __uint_fast32_t;
+typedef __int64_t __int_fast64_t;
+typedef __uint64_t __uint_fast64_t;
 #define	__INT_FAST8_MIN		INT32_MIN
 #define	__INT_FAST16_MIN	INT32_MIN
 #define	__INT_FAST32_MIN	INT32_MIN
@@ -102,30 +104,30 @@ typedef	__uint64_t		__uint_fast64_t;
 #define	__UINT_FAST64_MAX	UINT64_MAX
 
 /* 7.18.1.4 Integer types capable of holding object pointers */
-typedef	long			__intptr_t;
-typedef	unsigned long		__uintptr_t;
+typedef long __intptr_t;
+typedef unsigned long __uintptr_t;
 
 /* 7.18.1.5 Greatest-width integer types */
-typedef	__int64_t		__intmax_t;
-typedef	__uint64_t		__uintmax_t;
+typedef __int64_t __intmax_t;
+typedef __uint64_t __uintmax_t;
 
 /* Register size */
-typedef long			__register_t;
+typedef long __register_t;
 
 /* VM system types */
-typedef unsigned long		__vaddr_t;
-typedef unsigned long		__paddr_t;
-typedef unsigned long		__vsize_t;
-typedef unsigned long		__psize_t;
+typedef unsigned long __vaddr_t;
+typedef unsigned long __paddr_t;
+typedef unsigned long __vsize_t;
+typedef unsigned long __psize_t;
 
 /* Standard system types */
-typedef	double			__double_t;
-typedef	float			__float_t;
-typedef	long			__ptrdiff_t;
-typedef	unsigned long		__size_t;
-typedef	long			__ssize_t;
+typedef double __double_t;
+typedef float __float_t;
+typedef long __ptrdiff_t;
+typedef unsigned long __size_t;
+typedef long __ssize_t;
 #if defined(__GNUC__) && __GNUC__ >= 3
-typedef	__builtin_va_list	__va_list;
+typedef __builtin_va_list __va_list;
 #else
 typedef	char *			__va_list;
 #endif
@@ -135,13 +137,20 @@ typedef	char *			__va_list;
 #ifdef __WCHAR_UNSIGNED__
 typedef	unsigned int		__wchar_t;
 #else
-typedef	int			__wchar_t;
+typedef int __wchar_t;
 #endif
 #endif
-typedef	int			__wint_t;
-typedef	int			__rune_t;
-typedef	void *			__wctrans_t;
-typedef	void *			__wctype_t;
+typedef int __wint_t;
+typedef int __rune_t;
+typedef void* __wctrans_t;
+typedef void* __wctype_t;
+
+/* カーネルの連続不能エラーに発生した場合のパニック処理 */
+#define PANIC(fmt, ...)                                                        \
+do {                                                                       \
+printf("PANIC: %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__);  \
+while (1) {}                                                           \
+} while (0)
 
 /* 以下独自実装 */
 #define align_up(value, align)   __builtin_align_up(value, align)
@@ -152,10 +161,15 @@ typedef	void *			__wctype_t;
 #define va_end   __builtin_va_end
 #define va_arg   __builtin_va_arg
 
-void *memset(void *buf, char c, __size_t n);
-void *memcpy(void *dst, const void *src, __size_t n);
-char *strcpy(char *dst, const char *src);
-int strcmp(const char *s1, const char *s2);
-void printf(const char *fmt, ...);
+void* memset(void* buf, char c, __size_t n);
+
+void* memcpy(void* dst, const void* src, __size_t n);
+
+char* strcpy(char* dst, const char* src);
+
+int strcmp(const char* s1, const char* s2);
+
+void printf(const char* fmt, ...);
+
 
 #endif	/* _MACHINE__TYPES_H_ */

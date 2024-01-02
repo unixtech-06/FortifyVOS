@@ -22,6 +22,15 @@ set(KERNEL_SOURCE_FILES
         sys/lib/libsa/strcmp.c
         sys/sys/_types.h
         sys/arch/riscv32/include/sbi.h
+        sys/lib/libkern/libkern.h
+        sys/sys/types.h
+        sys/sys/cdefs.h
+        sys/arch/riscv32/include/cdefs.h
+        sys/sys/endian.h
+        sys/sys/_endian.h
+        sys/arch/riscv32/include/endian.h
+        sys/lib/libkern/strlcpy.h
+        sys/lib/libkern/strlcpy.h
         # Add more source files if needed
 )
 
