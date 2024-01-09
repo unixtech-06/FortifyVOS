@@ -30,6 +30,7 @@ set(KERNEL_SOURCE_FILES
         sys/lib/libkern/strlcpy.h
         sys/lib/libkern/strlcpy.h
         sys/arch/riscv32/include/cpu.h
+        sys/lib/libkern/strlcpy.c
         # Add more source files if needed
 )
 

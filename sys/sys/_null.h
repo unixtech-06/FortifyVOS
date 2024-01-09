@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: _null.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*
  * Written by Ryosuke,  January 2, 2024
  * Public domain.

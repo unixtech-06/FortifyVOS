@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: _endian.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*	$OpenBSD: _endian.h,v 1.8 2018/01/11 23:13:37 dlg Exp $	*/
 
 /*-

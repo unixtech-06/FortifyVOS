@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: libkern.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*	$OpenBSD: libkern.h,v 1.37 2023/12/21 02:57:14 jsg Exp $	*/
 /*	$NetBSD: libkern.h,v 1.7 1996/03/14 18:52:08 christos Exp $	*/
 

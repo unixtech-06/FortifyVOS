@@ -1,3 +1,5 @@
+/*	$EFortifyVOS: _types.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
+/*	$OpenBSD: _types.h,v 1.10 2022/08/06 13:31:13 semarie Exp $	*/
 /*-
  * Copyright (c) 1990, 1993
  *	The Regents of the University of California.  All rights reserved.

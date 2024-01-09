@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: types.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*	$OpenBSD: types.h,v 1.49 2022/08/06 13:31:13 semarie Exp $	*/
 /*	$NetBSD: types.h,v 1.29 1996/11/15 22:48:25 jtc Exp $	*/
 

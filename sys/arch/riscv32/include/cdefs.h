@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: cdefs.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*	$OpenBSD: cdefs.h,v 1.1 2021/04/23 02:42:16 drahn Exp $	*/
 
 #ifndef	_MACHINE_CDEFS_H_

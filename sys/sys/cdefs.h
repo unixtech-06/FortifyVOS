@@ -1,3 +1,4 @@
+/*	$EFortifyVOS: cdefs.h, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*	$OpenBSD: cdefs.h,v 1.43 2018/10/29 17:10:40 guenther Exp $	*/
 /*	$NetBSD: cdefs.h,v 1.16 1996/04/03 20:46:39 christos Exp $	*/
 
