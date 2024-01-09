@@ -1,4 +1,4 @@
-/*	$Project: EFortifyVOS, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
+/*	$EFortifyVOS: kernel.c, Version: 2024, Last Maintenance: 2024/1/9 14:30 $	*/
 /*
  * Copyright (c) 2023, Ryosuke
  *
