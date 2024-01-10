@@ -1,14 +1,14 @@
      VMA      LMA     Size Align Out     In      Symbol
        0        0 80200000     1 . = 0x80200000
 80200000 80200000      2d6     4 .text
-80200000 80200000        e     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.text.boot)
+80200000 80200000        e     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.text.boot)
 80200000 80200000        0     1                 
 80200000 80200000        0     1                 
 80200000 80200000        0     1                 
 80200000 80200000        e     1                 boot
 8020000e 8020000e        0     1                 
 8020000e 8020000e        0     1                 
-80200010 80200010      10c     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.text)
+80200010 80200010      10c     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.text)
 80200010 80200010        0     1                 
 80200010 80200010        0     1                 
 80200010 80200010        0     1                 
@@ -59,7 +59,7 @@
 80200118 80200118        0     1                 
 8020011c 8020011c        0     1                 
 8020011c 8020011c        0     1                 
-8020011c 8020011c      1a6     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.text)
+8020011c 8020011c      1a6     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.text)
 8020011c 8020011c        0     1                 
 8020011c 8020011c        0     1                 
 8020011c 8020011c        0     1                 
@@ -194,7 +194,7 @@
 802002be 802002be        0     1                 
 802002c2 802002c2        0     1                 
 802002c2 802002c2        0     1                 
-802002c2 802002c2       14     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.text)
+802002c2 802002c2       14     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.text)
 802002c2 802002c2        0     1                 
 802002c2 802002c2        0     1                 
 802002c2 802002c2        0     1                 
@@ -224,7 +224,7 @@
 8020035c 8020035c    20000     1 . += 128 * 1024
 8022035c 8022035c        0     1 __stack_top = .
        0        0      2f0     1 .debug_loc
-       0        0       f5     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_loc)
+       0        0       f5     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_loc)
        0        0        0     1                 
       1b       1b        0     1                 
       36       36        0     1                 
@@ -234,7 +234,7 @@
       a4       a4        0     1                 
       bf       bf        0     1                 
       da       da        0     1                 
-      f5       f5      19a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_loc)
+      f5       f5      19a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_loc)
       f5       f5        0     1                 
      113      113        0     1                 
      131      131        0     1                 
@@ -242,44 +242,44 @@
      1f1      1f1        0     1                 
      204      204        0     1                 
      264      264        0     1                 
-     28f      28f       61     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.debug_loc)
+     28f      28f       61     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.debug_loc)
      28f      28f        0     1                 
      2c3      2c3        0     1                 
        0        0      305     1 .debug_abbrev
-       0        0      199     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_abbrev)
-     199      199       ed     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_abbrev)
-     286      286       7f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.debug_abbrev)
-       0        0      7af     1 .debug_info
-       0        0      556     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_info)
-     556      556      1b3     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_info)
-     709      709       a6     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.debug_info)
+       0        0      199     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_abbrev)
+     199      199       ed     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_abbrev)
+     286      286       7f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.debug_abbrev)
+       0        0      7ba     1 .debug_info
+       0        0      556     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_info)
+     556      556      1b3     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_info)
+     709      709       b1     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.debug_info)
        0        0       30     1 .debug_ranges
-       0        0       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_ranges)
+       0        0       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_ranges)
        0        0        0     1                 
-      18       18       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_ranges)
+      18       18       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_ranges)
       18       18        0     1                 
-       0        0      253     1 .debug_str
-       0        0      253     1         <internal>:(.debug_str)
+       0        0      25c     1 .debug_str
+       0        0      25c     1         <internal>:(.debug_str)
        0        0       3b     1 .comment
        0        0       3b     1         <internal>:(.comment)
-       0        0       3e     1 .riscv.attributes
-       0        0       3e     1         <internal>:(.riscv.attributes)
+       0        0       2b     1 .riscv.attributes
+       0        0       2b     1         <internal>:(.riscv.attributes)
        0        0       ec     4 .debug_frame
-       0        0       84     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_frame)
+       0        0       84     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_frame)
        0        0        0     1                 
-      84       84       44     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_frame)
+      84       84       44     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_frame)
       84       84        0     1                 
-      c8       c8       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.debug_frame)
+      c8       c8       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.debug_frame)
       c8       c8        0     1                 
-       0        0      461     1 .debug_line
-       0        0      12f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-34d735.o:(.debug_line)
+       0        0      4a3     1 .debug_line
+       0        0      12f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-3d7129.o:(.debug_line)
        0        0        0     1                 .Lline_table_start0
-     12f      12f      278     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-8ac2d6.o:(.debug_line)
+     12f      12f      288     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-040ffd.o:(.debug_line)
      12f      12f        0     1                 .Lline_table_start0
-     3a7      3a7       ba     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-ffa65e.o:(.debug_line)
-     3a7      3a7        0     1                 .Lline_table_start0
-       0        0     1410     4 .symtab
-       0        0     1410     4         <internal>:(.symtab)
+     3b7      3b7       ec     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-f2fdea.o:(.debug_line)
+     3b7      3b7        0     1                 .Lline_table_start0
+       0        0     1420     4 .symtab
+       0        0     1420     4         <internal>:(.symtab)
        0        0       a0     1 .shstrtab
        0        0       a0     1         <internal>:(.shstrtab)
        0        0       81     1 .strtab

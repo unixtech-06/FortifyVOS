@@ -39,7 +39,7 @@
 #ifndef	_SYS_CDEFS_H_
 #define	_SYS_CDEFS_H_
 
-#include "../../arch/riscv32/include/cdefs.h"
+#include "../arch/riscv32/include/cdefs.h"
 
 /*
  * Macro to test if we're using a specific version of gcc or later.

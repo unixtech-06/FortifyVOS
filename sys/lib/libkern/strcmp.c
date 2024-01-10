@@ -1,3 +1,4 @@
+#include "libkern.h"
 #include "../../arch/riscv32/include/_types.h"
 
 int

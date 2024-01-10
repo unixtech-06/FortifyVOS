@@ -30,10 +30,10 @@
  *
  *	@(#)types.h	8.3 (Berkeley) 1/5/94
  */
-
+/*
 #ifndef _SYS__TYPES_H_
 #define	_SYS__TYPES_H_
-
+*/
 #include "../arch/riscv32/include/_types.h"
 
 typedef __int64_t	__blkcnt_t;	/* blocks allocated for file */
@@ -70,8 +70,8 @@ typedef	__uint32_t	__useconds_t;	/* microseconds */
  * stream conversions. The content must not be referenced by user programs.
  */
 typedef union {
-	char __mbstate8[128];
-	__int64_t __mbstateL;			/* for alignment */
+        char __mbstate8[128];
+        __int64_t __mbstateL;			/* for alignment */
 } __mbstate_t;
 
-#endif /* !_SYS__TYPES_H_ */
+//#endif /* !_SYS__TYPES_H_ */

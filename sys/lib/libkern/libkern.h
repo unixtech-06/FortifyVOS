@@ -32,110 +32,22 @@
  *
  *	@(#)libkern.h	8.1 (Berkeley) 6/10/93
  */
-
 #ifndef __LIBKERN_H__
 #define __LIBKERN_H__
 
 #include "../../sys/types.h"
 
-#ifndef LIBKERN_INLINE
-#define LIBKERN_INLINE	static __inline
-#define LIBKERN_BODY
-#endif
+/* strlcpy.c */
+size_t	 strlcpy(char *, const char *, int)
+__attribute__ ((__bounded__(__string__,1,3)));
 
+/* memset.c */
+void *memset(void *buf, char c, size_t n);
 
-LIBKERN_INLINE int imax(int, int);
-LIBKERN_INLINE int imin(int, int);
-LIBKERN_INLINE u_int max(u_int, u_int);
-LIBKERN_INLINE u_int min(u_int, u_int);
-LIBKERN_INLINE long lmax(long, long);
-LIBKERN_INLINE long lmin(long, long);
-LIBKERN_INLINE u_long ulmax(u_long, u_long);
-LIBKERN_INLINE u_long ulmin(u_long, u_long);
-LIBKERN_INLINE int abs(int);
+/* memcpy.c */
+void *memcpy(void *dst, const void *src, size_t n);
 
-#ifdef LIBKERN_BODY
-LIBKERN_INLINE int
-imax(int a, int b)
-{
-	return (a > b ? a : b);
-}
-LIBKERN_INLINE int
-imin(int a, int b)
-{
-	return (a < b ? a : b);
-}
-LIBKERN_INLINE long
-lmax(long a, long b)
-{
-	return (a > b ? a : b);
-}
-LIBKERN_INLINE long
-lmin(long a, long b)
-{
-	return (a < b ? a : b);
-}
-LIBKERN_INLINE u_int
-max(u_int a, u_int b)
-{
-	return (a > b ? a : b);
-}
-LIBKERN_INLINE u_int
-min(u_int a, u_int b)
-{
-	return (a < b ? a : b);
-}
-LIBKERN_INLINE u_long
-ulmax(u_long a, u_long b)
-{
-	return (a > b ? a : b);
-}
-LIBKERN_INLINE u_long
-ulmin(u_long a, u_long b)
-{
-	return (a < b ? a : b);
-}
-
-LIBKERN_INLINE int
-abs(int j)
-{
-	return(j < 0 ? -j : j);
-}
-#endif
-
-#ifdef NDEBUG						/* tradition! */
-#define	assert(e)	((void)0)
-#else
-#define	assert(e)	((e) ? (void)0 :				    \
-			    __assert("", __FILE__, __LINE__, #e))
-#endif
-
-#define	__KASSERTSTR	"kernel %sassertion \"%s\" failed: file \"%s\", line %d"
-
-#ifndef DIAGNOSTIC
-#define	KASSERTMSG(e, msg, ...)	((void)0)
-#define	KASSERT(e)	((void)0)
-#else
-#define	KASSERTMSG(e, msg, ...)	((e) ? (void)0 :			    \
-			    panic(__KASSERTSTR " " msg, "diagnostic ", #e,  \
-			    __FILE__, __LINE__, ## __VA_ARGS__))
-#define	KASSERT(e)	((e) ? (void)0 :				    \
-			    __assert("diagnostic ", __FILE__, __LINE__, #e))
-#endif
-
-#ifndef DEBUG
-#define	KDASSERTMSG(e, msg, ...)	((void)0)
-#define	KDASSERT(e)	((void)0)
-#else
-#define	KDASSERTMSG(e, msg, ...)	((e) ? (void)0 :		    \
-			    panic(__KASSERTSTR " " msg, "debugging ", #e,   \
-			    __FILE__, __LINE__, ## __VA_ARGS__))
-#define	KDASSERT(e)	((e) ? (void)0 :				    \
-			    __assert("debugging ", __FILE__, __LINE__, #e))
-#endif
-
-#define	CTASSERT(x)	extern char  _ctassert[(x) ? 1 : -1 ]	\
-			    __attribute__((__unused__))
-
+/* strcmp.c */
+int strcmp(const char* s1, const char* s2);
 
 #endif /* __LIBKERN_H__ */

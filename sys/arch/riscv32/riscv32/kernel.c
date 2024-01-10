@@ -34,6 +34,8 @@
 #include "../include/sbi.h"
 #include "../include/cpu.h"
 
+#include "../../../lib/libkern/libkern.h"
+
 extern int __bss[], __bss_end[], __stack_top[];
 
 struct sbiret sbi_call(long arg0, long arg1, long arg2, long arg3, long arg4,
