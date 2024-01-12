@@ -42,60 +42,6 @@
 extern int __bss[], __bss_end[], __stack_top[];
 
 /*
- *Declare the symbols __free_ram and __free_ram_end, which are defined within the linker script,
- *using extern char. Here, we are interested only in the addresses of these symbols, so we declare
- *them as char types for simplicity.
- */
-extern char __free_ram[], __free_ram_end[];
-
-/*
- * Allocate 'n' pages (where each page is 4048MB) using a static allocator.
- * Returns the physical address of the allocated memory.
- *
- * Parameters:
- * - __uint32_t n: Number of pages to allocate.
- *
- * Static Variables:
- * - static paddr_t next_paddr: Keeps track of the next available physical address
- *				for allocation. Initialized with the starting
- *				address of free RAM (__free_ram).
- *
- * Returns:
- * - paddr_t: Physical address of the allocated memory.
- *
- * Important Details:
- * - The allocator operates in units of pages, where each page has a size of 4048MB.
- * - The next available physical address is stored in 'next_paddr' and is updated
- *   after each allocation.
- * - A panic is triggered if the allocator runs out of memory, i.e., if the next
- *   available physical address exceeds the end address of free RAM (__free_ram_end).
- * - The allocated memory is zeroed using memset before returning the physical address.
-*/
-__paddr_t
-alloc_pages(__uint32_t n)
-{
-	/* Static variable to keep track of the next available physical address. */
-	static __paddr_t next_paddr = (paddr_t) __free_ram;
-
-	/* Save the current next_paddr as the allocated physical address. */
-	__paddr_t paddr = next_paddr;
-
-	/* Update next_paddr to point to the next available physical address. */
-	next_paddr += n * PAGE_SIZE;
-
-	/* Check for out-of-memory condition and trigger a panic if necessary. */
-	if (next_paddr > (__paddr_t) __free_ram_end)
-		PANIC("out of memory");
-
-	/* Zero out the allocated memory. */
-	memset((void *) paddr, 0, n * PAGE_SIZE); // PAGE_SIZE is 4048MB. cpu.h
-
-	/* Return the physical address of the allocated memory. */
-	return paddr;
-}
-
-
-/*
  * Structure to hold the return values from an SBI call.
  */
 struct sbiret sbi_call(long arg0, long arg1, long arg2, long arg3, long arg4,

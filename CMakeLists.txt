@@ -13,4 +13,5 @@ add_executable(MyKernel
         sys/lib/libkern/memcpy.c
         sys/lib/libkern/strlcpy.c
         sys/lib/libkern/strcmp.c
-        sys/arch/riscv32/riscv32/printf.c)
+        sys/arch/riscv32/riscv32/printf.c
+        sys/kern/C/kern_malloc.c)
