@@ -33,6 +33,8 @@
 #pragma once
 #include "_types.h"
 
+#define PAGE_SIZE 4096 /* 1 mem page size */
+
 struct trap_frame {
         __uint32_t ra;
         __uint32_t gp;

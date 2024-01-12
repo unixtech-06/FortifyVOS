@@ -1,14 +1,14 @@
      VMA      LMA     Size Align Out     In      Symbol
        0        0 80200000     1 . = 0x80200000
-80200000 80200000      2d2     4 .text
-80200000 80200000        e     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.text.boot)
+80200000 80200000      37e     4 .text
+80200000 80200000        e     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.text.boot)
 80200000 80200000        0     1                 
 80200000 80200000        0     1                 
 80200000 80200000        0     1                 
 80200000 80200000        e     1                 boot
 8020000e 8020000e        0     1                 
 8020000e 8020000e        0     1                 
-80200010 80200010      108     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.text)
+80200010 80200010      108     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.text)
 80200010 80200010        0     1                 
 80200010 80200010        0     1                 
 80200010 80200010        0     1                 
@@ -63,7 +63,7 @@
 80200114 80200114        0     1                 
 80200118 80200118        0     1                 
 80200118 80200118        0     1                 
-80200118 80200118      1a6     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.text)
+80200118 80200118      1a6     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.text)
 80200118 80200118        0     1                 
 80200118 80200118        0     1                 
 80200118 80200118        0     1                 
@@ -198,37 +198,149 @@
 802002ba 802002ba        0     1                 
 802002be 802002be        0     1                 
 802002be 802002be        0     1                 
-802002be 802002be       14     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.text)
+802002be 802002be       24     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.text)
 802002be 802002be        0     1                 
 802002be 802002be        0     1                 
 802002be 802002be        0     1                 
-802002be 802002be       14     1                 memset
-802002c0 802002c0        0     1                 
-802002c2 802002c2        0     1                 
-802002c2 802002c2        0     1                 .LBB0_2
-802002c2 802002c2        0     1                 
+802002be 802002be       24     1                 strcpy
 802002c4 802002c4        0     1                 
 802002c8 802002c8        0     1                 
 802002c8 802002c8        0     1                 
-802002cc 802002cc        0     1                 
-802002cc 802002cc        0     1                 
+802002ca 802002ca        0     1                 
+802002ca 802002ca        0     1                 .LBB0_2
+802002ca 802002ca        0     1                 
 802002ce 802002ce        0     1                 
-802002ce 802002ce        0     1                 
-802002d0 802002d0        0     1                 .LBB0_3
-802002d0 802002d0        0     1                 
-802002d0 802002d0        0     1                 
 802002d2 802002d2        0     1                 
-802002d2 802002d2        0     1                 
-802002d4 802002d4       81     4 .rodata
-802002d4 802002d4       81     1         <internal>:(.rodata.str1.1)
-80200358 80200358        0     4 .bss
-80200358 80200358        0     1         __bss = .
-80200358 80200358        0     1         __bss_end = .
-80200358 80200358        0     1 . = ALIGN ( 4 )
-80200358 80200358    20000     1 . += 128 * 1024
-80220358 80220358        0     1 __stack_top = .
-       0        0      2f0     1 .debug_loc
-       0        0       f5     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_loc)
+802002d6 802002d6        0     1                 
+802002d6 802002d6        0     1                 
+802002d8 802002d8        0     1                 
+802002d8 802002d8        0     1                 
+802002da 802002da        0     1                 
+802002dc 802002dc        0     1                 .LBB0_3
+802002dc 802002dc        0     1                 
+802002dc 802002dc        0     1                 
+802002e0 802002e0        0     1                 
+802002e2 802002e2        0     1                 
+802002e2 802002e2        0     1                 
+802002e2 802002e2       14     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.text)
+802002e2 802002e2        0     1                 
+802002e2 802002e2        0     1                 
+802002e2 802002e2        0     1                 
+802002e2 802002e2       14     1                 memset
+802002e4 802002e4        0     1                 
+802002e6 802002e6        0     1                 
+802002e6 802002e6        0     1                 .LBB0_2
+802002e6 802002e6        0     1                 
+802002e8 802002e8        0     1                 
+802002ec 802002ec        0     1                 
+802002ec 802002ec        0     1                 
+802002f0 802002f0        0     1                 
+802002f0 802002f0        0     1                 
+802002f2 802002f2        0     1                 
+802002f2 802002f2        0     1                 
+802002f4 802002f4        0     1                 .LBB0_3
+802002f4 802002f4        0     1                 
+802002f4 802002f4        0     1                 
+802002f6 802002f6        0     1                 
+802002f6 802002f6        0     1                 
+802002f6 802002f6       1a     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.text)
+802002f6 802002f6        0     1                 
+802002f6 802002f6        0     1                 
+802002f6 802002f6        0     1                 
+802002f6 802002f6       1a     1                 memcpy
+802002f8 802002f8        0     1                 
+802002fa 802002fa        0     1                 
+802002fa 802002fa        0     1                 .LBB0_2
+802002fa 802002fa        0     1                 
+802002fe 802002fe        0     1                 
+80200300 80200300        0     1                 
+80200302 80200302        0     1                 
+80200306 80200306        0     1                 
+80200306 80200306        0     1                 
+8020030a 8020030a        0     1                 
+8020030a 8020030a        0     1                 
+8020030c 8020030c        0     1                 
+8020030c 8020030c        0     1                 
+8020030e 8020030e        0     1                 .LBB0_3
+8020030e 8020030e        0     1                 
+8020030e 8020030e        0     1                 
+80200310 80200310        0     1                 
+80200310 80200310        0     1                 
+80200310 80200310       38     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.text)
+80200310 80200310        0     1                 
+80200310 80200310        0     1                 
+80200310 80200310        0     1                 
+80200310 80200310       38     1                 strlcpy
+80200312 80200312        0     1                 
+80200314 80200314        0     1                 
+80200316 80200316        0     1                 
+80200316 80200316        0     1                 
+80200318 80200318        0     1                 
+80200318 80200318        0     1                 .LBB0_2
+80200318 80200318        0     1                 
+8020031a 8020031a        0     1                 
+8020031e 8020031e        0     1                 
+80200322 80200322        0     1                 
+80200322 80200322        0     1                 
+80200326 80200326        0     1                 
+80200328 80200328        0     1                 
+8020032a 8020032a        0     1                 
+8020032a 8020032a        0     1                 
+8020032c 8020032c        0     1                 
+80200330 80200330        0     1                 .LBB0_4
+80200330 80200330        0     1                 
+80200330 80200330        0     1                 
+80200334 80200334        0     1                 .LBB0_5
+80200334 80200334        0     1                 
+80200334 80200334        0     1                 
+80200338 80200338        0     1                 
+8020033c 8020033c        0     1                 
+8020033c 8020033c        0     1                 
+8020033e 8020033e        0     1                 
+80200340 80200340        0     1                 .LBB0_6
+80200340 80200340        0     1                 
+80200346 80200346        0     1                 
+80200348 80200348        0     1                 
+80200348 80200348        0     1                 
+80200348 80200348       36     2         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.text)
+80200348 80200348        0     1                 
+80200348 80200348        0     1                 
+80200348 80200348        0     1                 
+80200348 80200348       36     1                 strcmp
+8020034c 8020034c        0     1                 
+8020034e 8020034e        0     1                 
+80200350 80200350        0     1                 
+80200350 80200350        0     1                 .LBB0_2
+80200350 80200350        0     1                 
+80200354 80200354        0     1                 
+80200362 80200362        0     1                 
+80200366 80200366        0     1                 
+80200366 80200366        0     1                 
+8020036a 8020036a        0     1                 
+8020036c 8020036c        0     1                 
+8020036e 8020036e        0     1                 
+80200370 80200370        0     1                 .LBB0_4
+80200370 80200370        0     1                 
+80200374 80200374        0     1                 
+80200378 80200378        0     1                 
+80200378 80200378        0     1                 
+8020037c 8020037c        0     1                 
+8020037e 8020037e        0     1                 
+8020037e 8020037e        0     1                 
+80200380 80200380       81     4 .rodata
+80200380 80200380       81     1         <internal>:(.rodata.str1.1)
+80200404 80200404        0     4 .bss
+80200404 80200404        0     1         __bss = .
+80200404 80200404        0     1         __bss_end = .
+80200404 80200404        0     1 . = ALIGN ( 4 )
+80200404 80200404    20000     1 . += 128 * 1024
+80220404 80220404        0     1 __stack_top = .
+80220404 80220404      bfc     1 . = ALIGN ( 4096 )
+80221000 80221000        0     1 __free_ram = .
+80221000 80221000  4000000     1 . += 64 * 1024 * 1024
+84221000 84221000        0     1 __free_ram_end = .
+       0        0      46c     1 .debug_loc
+       0        0       f5     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_loc)
        0        0        0     1                 
       1b       1b        0     1                 
       36       36        0     1                 
@@ -238,7 +350,7 @@
       a4       a4        0     1                 
       bf       bf        0     1                 
       da       da        0     1                 
-      f5       f5      19a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_loc)
+      f5       f5      19a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_loc)
       f5       f5        0     1                 
      113      113        0     1                 
      131      131        0     1                 
@@ -246,45 +358,84 @@
      1f1      1f1        0     1                 
      204      204        0     1                 
      264      264        0     1                 
-     28f      28f       61     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.debug_loc)
+     28f      28f       47     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.debug_loc)
      28f      28f        0     1                 
-     2c3      2c3        0     1                 
-       0        0      305     1 .debug_abbrev
-       0        0      199     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_abbrev)
-     199      199       ed     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_abbrev)
-     286      286       7f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.debug_abbrev)
-       0        0      7ba     1 .debug_info
-       0        0      556     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_info)
-     556      556      1b3     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_info)
-     709      709       b1     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.debug_info)
+     2ad      2ad        0     1                 
+     2d6      2d6       61     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.debug_loc)
+     2d6      2d6        0     1                 
+     30a      30a        0     1                 
+     337      337       74     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.debug_loc)
+     337      337        0     1                 
+     34a      34a        0     1                 
+     37e      37e        0     1                 
+     3ab      3ab       83     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.debug_loc)
+     3ab      3ab        0     1                 
+     3be      3be        0     1                 
+     3fd      3fd        0     1                 
+     410      410        0     1                 
+     42e      42e       3e     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.debug_loc)
+     42e      42e        0     1                 
+     459      459        0     1                 
+       0        0      4ea     1 .debug_abbrev
+       0        0      199     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_abbrev)
+     199      199       ed     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_abbrev)
+     286      286       74     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.debug_abbrev)
+     2fa      2fa       7f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.debug_abbrev)
+     379      379       9a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.debug_abbrev)
+     413      413       81     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.debug_abbrev)
+     494      494       56     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.debug_abbrev)
+       0        0      a44     1 .debug_info
+       0        0      561     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_info)
+     561      561      1b3     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_info)
+     714      714       7e     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.debug_info)
+     792      792       b1     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.debug_info)
+     843      843       c9     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.debug_info)
+     90c      90c       b9     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.debug_info)
+     9c5      9c5       7f     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.debug_info)
        0        0       30     1 .debug_ranges
-       0        0       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_ranges)
+       0        0       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_ranges)
        0        0        0     1                 
-      18       18       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_ranges)
+      18       18       18     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_ranges)
       18       18        0     1                 
-       0        0      25c     1 .debug_str
-       0        0      25c     1         <internal>:(.debug_str)
+       0        0      2f8     1 .debug_str
+       0        0      2f8     1         <internal>:(.debug_str)
        0        0       3b     1 .comment
        0        0       3b     1         <internal>:(.comment)
        0        0       2b     1 .riscv.attributes
        0        0       2b     1         <internal>:(.riscv.attributes)
-       0        0       ec     4 .debug_frame
-       0        0       84     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_frame)
+       0        0      17c     4 .debug_frame
+       0        0       84     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_frame)
        0        0        0     1                 
-      84       84       44     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_frame)
+      84       84       44     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_frame)
       84       84        0     1                 
-      c8       c8       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.debug_frame)
+      c8       c8       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.debug_frame)
       c8       c8        0     1                 
-       0        0      4ba     1 .debug_line
-       0        0      146     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-815695.o:(.debug_line)
+      ec       ec       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.debug_frame)
+      ec       ec        0     1                 
+     110      110       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.debug_frame)
+     110      110        0     1                 
+     134      134       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.debug_frame)
+     134      134        0     1                 
+     158      158       24     4         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.debug_frame)
+     158      158        0     1                 
+       0        0      8b5     1 .debug_line
+       0        0      1c8     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/kernel-b51cba.o:(.debug_line)
        0        0        0     1                 .Lline_table_start0
-     146      146      288     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/common-dfc400.o:(.debug_line)
-     146      146        0     1                 .Lline_table_start0
-     3ce      3ce       ec     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-6f75f1.o:(.debug_line)
-     3ce      3ce        0     1                 .Lline_table_start0
-       0        0     1460     4 .symtab
-       0        0     1460     4         <internal>:(.symtab)
+     1c8      1c8      289     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/printf-252373.o:(.debug_line)
+     1c8      1c8        0     1                 .Lline_table_start0
+     451      451       9a     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcp-78b260.o:(.debug_line)
+     451      451        0     1                 .Lline_table_start0
+     4eb      4eb       e8     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memset-c5fe2f.o:(.debug_line)
+     4eb      4eb        0     1                 .Lline_table_start0
+     5d3      5d3       f8     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/memcpy-ace04c.o:(.debug_line)
+     5d3      5d3        0     1                 .Lline_table_start0
+     6cb      6cb      13c     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strlcpy-4ac63e.o:(.debug_line)
+     6cb      6cb        0     1                 .Lline_table_start0
+     807      807       ae     1         /var/folders/dx/1ls6nd552bsc6ng0p83ftr4w0000gn/T/strcmp-077d23.o:(.debug_line)
+     807      807        0     1                 .Lline_table_start0
+       0        0     1e60     4 .symtab
+       0        0     1e60     4         <internal>:(.symtab)
        0        0       a0     1 .shstrtab
        0        0       a0     1         <internal>:(.shstrtab)
-       0        0       81     1 .strtab
-       0        0       81     1         <internal>:(.strtab)
+       0        0       dc     1 .strtab
+       0        0       dc     1         <internal>:(.strtab)

@@ -39,7 +39,7 @@
 
 /* strlcpy.c */
 size_t strlcpy(char *dst, const char *src, size_t dsize)
-__attribute__ ((__bounded__(__string__,1,3)));
+                __attribute__ ((__bounded__(__string__,1,3)));
 
 /* memset.c */
 void *memset(void *buf, char c, size_t n);
