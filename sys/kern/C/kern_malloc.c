@@ -43,7 +43,7 @@
 extern char __free_ram[], __free_ram_end[];
 
 /*
- * Allocate 'n' pages (where each page is 4048MB) using a static allocator.
+ * Allocate 'n' pages (where each page is 4096MB) using a static allocator.
  * Returns the physical address of the allocated memory.
  *
  * Parameters:

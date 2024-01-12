@@ -20,11 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1c72876-d44a-452d-94bd-f0adf5e886c1" name="変更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sys/arch/riscv32/riscv32/kernel.c" beforeDir="false" afterPath="$PROJECT_DIR$/sys/arch/riscv32/riscv32/kernel.c" afterDir="false" />
-    </list>
+    <list default="true" id="d1c72876-d44a-452d-94bd-f0adf5e886c1" name="変更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +120,7 @@
       <workItem from="1704757981698" duration="8438000" />
       <workItem from="1704847970314" duration="2126000" />
       <workItem from="1704852839677" duration="19363000" />
-      <workItem from="1705018774509" duration="8817000" />
+      <workItem from="1705018774509" duration="9495000" />
     </task>
     <servers />
   </component>
