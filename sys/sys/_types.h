@@ -30,11 +30,12 @@
  *
  *	@(#)types.h	8.3 (Berkeley) 1/5/94
  */
-/*
-#ifndef _SYS__TYPES_H_
-#define	_SYS__TYPES_H_
-*/
-#include "../arch/riscv32/include/_types.h"
+
+//#ifndef _SYS__TYPES_H_
+//#define _SYS__TYPES_H_
+#pragma once
+
+#include "../arch/riscv32/include/_types.h" /* _MACHINE__TYPES_H_ */
 
 typedef __int64_t	__blkcnt_t;	/* blocks allocated for file */
 typedef __int32_t	__blksize_t;	/* optimal blocksize for I/O */

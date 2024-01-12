@@ -32,10 +32,10 @@
  *	@(#)types.h	8.3 (Berkeley) 1/5/94
  *	@(#)ansi.h	8.2 (Berkeley) 1/4/94
  */
+#ifndef _MACHINE__TYPES_H_
+#define _MACHINE__TYPES_H_
 
 #include "../../../sys/_null.h"
-
-#include "../../../lib/libkern/libkern.h"
 
 #if defined(_KERNEL)
 typedef struct label_t {
@@ -53,6 +53,7 @@ typedef struct label_t {
  * This does not reflect the optimal alignment, just the possibility
  * (within reasonable limits).
  */
+
 #define	_ALIGNBYTES		(sizeof(long) - 1)
 #define	_STACKALIGNBYTES	15
 #define	_ALIGN(p)		(((unsigned long)(p) + _ALIGNBYTES) & ~_ALIGNBYTES)
@@ -161,12 +162,8 @@ while (1) {}                                                           \
 #define va_end   __builtin_va_end
 #define va_arg   __builtin_va_arg
 
-void* memset(void* buf, char c, __size_t n);
-
-void* memcpy(void* dst, const void* src, __size_t n);
-
-char* strcpy(char* dst, const char* src);
-
 int strcmp(const char* s1, const char* s2);
 
 void printf(const char* fmt, ...);
+
+#endif	/* _MACHINE__TYPES_H_ */

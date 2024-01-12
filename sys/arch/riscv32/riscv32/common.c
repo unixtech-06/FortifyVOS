@@ -34,8 +34,14 @@
 
 void putchar(char ch);
 
+/*
+ * Custom printf function supporting %s, %d, and %x format specifiers.
+ * Arguments:
+ *   fmt: Format string with optional format specifiers.
+ *   ...: Variable number of arguments corresponding to the format specifiers.
+ */
 void
-printf(const char *fmt, ...)
+printf(const char* fmt, ...)
 {
         va_list vargs;
         va_start(vargs, fmt);
@@ -45,13 +51,16 @@ printf(const char *fmt, ...)
                         fmt++;
                         switch (*fmt) {
                                 case '\0':
+                                        // Handle incomplete format specifier by printing '%'.
                                         putchar('%');
-                                goto end;
+                                        goto end;
                                 case '%':
+                                        // Print '%' character for '%%' in the format.
                                         putchar('%');
-                                break;
+                                        break;
                                 case 's': {
-                                        const char *s = va_arg(vargs, const char *);
+                                        // Print a string (null-terminated character array).
+                                        const char* s = va_arg(vargs, const char *);
                                         while (*s) {
                                                 putchar(*s);
                                                 s++;
@@ -59,6 +68,7 @@ printf(const char *fmt, ...)
                                         break;
                                 }
                                 case 'd': {
+                                        // Print a signed decimal integer.
                                         int value = va_arg(vargs, int);
                                         if (value < 0) {
                                                 putchar('-');
@@ -78,21 +88,24 @@ printf(const char *fmt, ...)
                                         break;
                                 }
                                 case 'x': {
+                                        // Print an unsigned hexadecimal integer.
                                         const int value = va_arg(vargs, int);
                                         for (int i = 7; i >= 0; i--) {
                                                 const int nibble = (value >> (i * 4)) & 0xf;
                                                 putchar("0123456789abcdef"[nibble]);
                                         }
+                                        break;
                                 }
                                 default: ;
                         }
                 } else {
+                        // Print regular characters in the format string.
                         putchar(*fmt);
                 }
 
                 fmt++;
         }
 
-        end:
-            va_end(vargs);
+end:
+        va_end(vargs);
 }

@@ -1,5 +1,4 @@
 #include "libkern.h"
-#include "../../arch/riscv32/include/_types.h"
 
 int
 strcmp(const char* s1, const char* s2)

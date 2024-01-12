@@ -38,7 +38,7 @@
 #include "../../sys/types.h"
 
 /* strlcpy.c */
-size_t	 strlcpy(char *, const char *, int)
+size_t strlcpy(char *dst, const char *src, size_t dsize)
 __attribute__ ((__bounded__(__string__,1,3)));
 
 /* memset.c */
