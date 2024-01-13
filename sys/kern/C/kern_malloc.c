@@ -66,8 +66,9 @@ extern char __free_ram[], __free_ram_end[];
  * - The allocated memory is zeroed using memset before returning the physical address.
 */
 __paddr_t
-alloc_pages(__uint32_t n)
+alloc_pages(__uint32_t arg_n)
 {
+	__uint32_t n = arg_n;
 	/* Static variable to keep track of the next available physical address. */
 	static __paddr_t next_paddr = (__paddr_t) __free_ram;
 

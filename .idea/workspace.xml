@@ -20,7 +20,14 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1c72876-d44a-452d-94bd-f0adf5e886c1" name="変更" comment="" />
+    <list default="true" id="d1c72876-d44a-452d-94bd-f0adf5e886c1" name="変更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/zigbrains.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zigbrains.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel.elf" beforeDir="false" afterPath="$PROJECT_DIR$/kernel.elf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kernel.map" beforeDir="false" afterPath="$PROJECT_DIR$/kernel.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sys/arch/riscv32/riscv32/kernel.c" beforeDir="false" afterPath="$PROJECT_DIR$/sys/arch/riscv32/riscv32/kernel.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sys/kern/C/kern_malloc.c" beforeDir="false" afterPath="$PROJECT_DIR$/sys/kern/C/kern_malloc.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +85,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.falsepattern.zigbrains.zig.settings.ZLSSettingsConfigurable",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -120,7 +127,8 @@
       <workItem from="1704757981698" duration="8438000" />
       <workItem from="1704847970314" duration="2126000" />
       <workItem from="1704852839677" duration="19363000" />
-      <workItem from="1705018774509" duration="9495000" />
+      <workItem from="1705018774509" duration="18335000" />
+      <workItem from="1705138780037" duration="3189000" />
     </task>
     <servers />
   </component>
