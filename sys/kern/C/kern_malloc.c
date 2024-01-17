@@ -32,11 +32,12 @@
 
 #include "../../arch/riscv32/include/_types.h"
 #include "../../arch/riscv32/include/cpu.h"
+#include "../osfmk/assert.h"
 
 #include "../../lib/libkern/libkern.h"
 
 /*
-*Declare the symbols __free_ram and __free_ram_end, which are defined within the linker script,
+ *Declare the symbols __free_ram and __free_ram_end, which are defined within the linker script,
  *using extern char. Here, we are interested only in the addresses of these symbols, so we declare
  *them as char types for simplicity.
  */
@@ -81,6 +82,8 @@ alloc_pages(__uint32_t arg_n)
 	/* Check for out-of-memory condition and trigger a panic if necessary. */
 	if (next_paddr > (__paddr_t) __free_ram_end)
 		PANIC("out of memory");
+
+	static_assert(PAGE_SIZE == 4096, "Page size is not 4KB");
 
 	/* Zero out the allocated memory. */
 	memset((void *) paddr, 0, n * PAGE_SIZE); // PAGE_SIZE is 4048MB. cpu.h
