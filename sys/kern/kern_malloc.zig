@@ -1,27 +1,36 @@
 const c = @cImport({
-        @cInclude("../arch/riscv32/include/_types.h");
-        @cInclude("../arch/riscv32/include/cpu.h");
-        @cInclude("../arch/riscv32/include/libkern.h");
+    @cInclude("../../arch/riscv32/include/_types.h");
+    @cInclude("../../arch/riscv32/include/cpu.h");
+    @cInclude("../../lib/libkern/libkern.h");
 });
 
-const __uint32_t = u32; //* Do not use c.__uint32_t *//
-const __paddr_t = u64; //* Do not use c.__paddr_t *//
+extern var __free_ram: [*]u8; // char型のポインタとして宣言
+extern var __free_ram_end: [*]u8; // char型のポインタとして宣言
 
-var __free_ram: [*]u8 = undefined;
-var __free_ram_end: [*]u8 = undefined;
+// カーネルの他の部分で定義されているPanic関数を仮定
+extern fn Panic(msg: [*c]const u8) noreturn;
 
-pub export fn alloc_pages(arg_n: __uint32_t) __paddr_t {
-        var n = arg_n;
-        const next_paddr = struct {
-                var static: __paddr_t = @as(__paddr_t, @intCast(@intFromPtr(@as([*]u8, @ptrCast(@alignCast(&__free_ram))))));
-        };
-        var paddr: __paddr_t = next_paddr.static;
-        next_paddr.static +%= @as(__paddr_t, @bitCast(@as(c_ulong, n *% @as(__uint32_t, @bitCast(@as(c_int, 4096))))));
-        if (next_paddr.static > @as(__paddr_t, @intCast(@intFromPtr(@as([*]u8, @ptrCast(@alignCast(&__free_ram_end))))))) while (true) {
-                c.PANIC("out of memory");
-        };
-        _ = c.memset(@as(?*anyopaque, @ptrFromInt(paddr)), @as(u8, @bitCast(@as(i8, @truncate(@as(c_int, 0))))), @as(usize, @bitCast(@as(c_ulong, n *% @as(__uint32_t, @bitCast(@as(c_int, 4096)))))));
-        return paddr;
+pub fn alloc_pages(n: c.__uint32_t) ?c.__paddr_t {
+    const page_size = c.PAGE_SIZE; // cpu.hで定義されていると仮定
+
+    var next_paddr = @ptrToInt(__free_ram); // 直接ポインタを使用
+    const free_ram_end = @ptrToInt(__free_ram_end); // 直接ポインタを使用
+
+    const paddr = next_paddr;
+
+    next_paddr += n * page_size;
+
+    // メモリ不足の状態をチェック
+    if (next_paddr > free_ram_end) {
+        Panic("out of memory");
+    }
+
+    // 割り当てられたメモリをゼロクリア
+    var i: usize = 0;
+    while (i < n * page_size) {
+        __free_ram[i] = 0;
+        i += 1;
+    }
+
+    return @intToPtr(c.__paddr_t, paddr);
 }
-
-pub fn main() !void { }

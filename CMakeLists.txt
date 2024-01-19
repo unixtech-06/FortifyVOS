@@ -14,4 +14,16 @@ add_executable(MyKernel
         sys/lib/libkern/strlcpy.c
         sys/lib/libkern/strcmp.c
         sys/arch/riscv32/riscv32/printf.c
-        sys/kern/C/kern_malloc.c)
+        sys/kern/C/kern_malloc.c
+        sys/kern/C/malloc.c
+        sys/kern/C/malloc.c
+        sys/kern/osfmk/assert.h
+        sys/kern/osfmk/kalloc.c
+        sys/kern/osfmk/zalloc.h
+        sys/kern/osfmk/zalloc_internal.h
+        sys/kern/osfmk/kern_types.h
+        sys/kern/osfmk/kern_types.h
+        sys/kern/osfmk/kern_types.h
+        sys/kern/osfmk/kern_types.h
+        sys/kern/osfmk/kern_malloc.c
+        sys/kern/osfmk/zalloc.c)
