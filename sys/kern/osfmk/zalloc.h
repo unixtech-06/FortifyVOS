@@ -65,6 +65,7 @@
 #ifndef _KERN_ZALLOC_H_
 #define _KERN_ZALLOC_H_
 #include "../../sys/cdefs.h"
+#include "../../sys/types.h"
 
 __options_decl(zalloc_flags_t, uint32_t, {
 	// values smaller than 0xff are shared with the M_* flags from BSD MALLOC
@@ -72,8 +73,14 @@ __options_decl(zalloc_flags_t, uint32_t, {
 	Z_NOWAIT        = 0x0001,
 	Z_NOPAGEWAIT    = 0x0002,
 	Z_ZERO          = 0x0004,
-
 	Z_NOFAIL        = 0x8000,
+});
+
+__enum_decl(zone_kheap_id_t, uint32_t, {
+	KHEAP_ID_NONE,
+	KHEAP_ID_DEFAULT,
+	KHEAP_ID_DATA_BUFFERS,
+	KHEAP_ID_KEXT,
 });
 
 typedef struct zone_stats *__zpercpu, zone_stats_t;

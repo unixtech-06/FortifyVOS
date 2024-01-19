@@ -59,6 +59,9 @@
 #ifndef _KERN_ASSERT_H_
 #define _KERN_ASSERT_H_
 
+#define assert(ex)  \
+(__builtin_expect(!!((ex)), 1L) ? (void)0 : Assert(__FILE__, __LINE__, # ex))
+
 /*
  * This header file provides a compatible implementation of the static_assert macro
  * for C11 standard and later. The static_assert macro is used for compile-time

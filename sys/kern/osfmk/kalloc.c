@@ -64,11 +64,19 @@
  *	to be used by the kernel to manage dynamic memory fast.
  */
 
-#include "kern_types.h"
+#include "assert.h"
 #include "kalloc.h"
+#include "kern_types.h"
 #include "zalloc.h"
 
+
 #define MAX_SIZE_ZDLUT     ((KALLOC_DLUT_SIZE - 1) * KALLOC_MINALIGN)
+#define INDEX_ZDLUT(size)       (((size) + KALLOC_MINALIGN - 1) / KALLOC_MINALIGN)
+
+SECURITY_READ_ONLY_LATE(vm_size_t) kalloc_max_prerounded;
+
+static TUNABLE(bool, kheap_temp_debug, "kheap_temp_debug", false);
+
 
 zone_t
 kalloc_heap_zone_for_size(kalloc_heap_t kheap, vm_size_t size)

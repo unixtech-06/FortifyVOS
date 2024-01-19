@@ -55,14 +55,55 @@
  */
 /*
  */
+/*
+ *	File:	kern/zalloc.c kern/zalloc_internal.h
+ *	Author:	Avadis Tevanian, Jr.
+ *
+ *	Zone-based memory allocator.  A zone is a collection of fixed size
+ *	data blocks for which quick allocation/deallocation is possible.
+ */
 
 #ifndef _KERN_ZALLOC_INTERNAL_H_
 #define _KERN_ZALLOC_INTERNAL_H_
 #include "../../sys/types.h"
 #include "zalloc.h"
+#include "zalloc_internal.h"
 
-#define KALLOC_MINALIGN     (1 << KALLOC_LOG2_MINALIGN)
-#define KALLOC_DLUT_SIZE    (2048 / KALLOC_MINALIGN)
+#define KALLOC_MINALIGN (1 << KALLOC_LOG2_MINALIGN)
+#define KALLOC_DLUT_SIZE (2048 / KALLOC_MINALIGN)
+
+typedef struct zone_packed_virtual_address
+{
+	uint32_t packed_address;
+} zone_pva_t;
+
+typedef struct zone_element
+{
+	vm_offset_t ze_value;
+} zone_element_t;
+
+#define STAILQ_HEAD(name, type)                                                \
+	struct name                                                            \
+	{                                                                      \
+		struct type* stqh_first; /* first element */                   \
+		struct type** stqh_last; /* addr of last next element */       \
+	}
+
+STAILQ_HEAD(zone_magazine, zone_depot);
+
+typedef struct zone_cache
+{
+	uint16_t zc_alloc_cur;
+	uint16_t zc_free_cur;
+	uint16_t zc_depot_cur;
+	uint16_t __zc_padding;
+	zone_element_t* zc_alloc_elems;
+	zone_element_t* zc_free_elems;
+	hw_lock_bit_t zc_depot_lock;
+	uint32_t zc_depot_max;
+	struct zone_depot zc_depot;
+}* zone_cache_t;
+
 /*!
  * @struct zone_stats
  *
@@ -98,7 +139,7 @@ struct zone
 	struct zone_view* z_views;
 
 	struct thread* z_expander;
-	struct zone_cache* __zpercpu z_pcpu_cache;
+	struct zone_cache *__zpercpu, z_pcpu_cache;
 
 	uint16_t z_chunk_pages; /* size used for more memory in pages  */
 	uint16_t z_chunk_elems; /* count of allocations per chunk */
@@ -243,4 +284,19 @@ struct zone
 #endif
 };
 
-#endif  /* _KERN_ZALLOC_INTERNAL_H_ */
+typedef struct zone* zone_t;
+
+struct kheap_zones
+{
+	struct kalloc_zone_cfg* cfg;
+	struct kalloc_heap* views;
+	zone_kheap_id_t heap_id;
+	uint16_t max_k_zone;
+	uint8_t dlut[KALLOC_DLUT_SIZE]; /* table of indices into k_zone[] */
+	uint8_t k_zindex_start;
+	/* If there's no hit in the DLUT, then start searching from
+	 * k_zindex_start. */
+	zone_t* k_zone;
+};
+
+#endif /* _KERN_ZALLOC_INTERNAL_H_ */

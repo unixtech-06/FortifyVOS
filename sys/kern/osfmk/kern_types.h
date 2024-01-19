@@ -33,6 +33,8 @@
 #define _KERN_KERN_TYPES_H_
 #include "zalloc_internal.h"
 
+#define         ZONE_NULL               ((zone_t) 0)
+
 struct zone;
 typedef struct zone                     *zone_t;
 #endif  /* _KERN_KERN_TYPES_H_ */
