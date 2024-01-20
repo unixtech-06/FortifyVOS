@@ -39,6 +39,16 @@ void putchar(char ch);
  * Arguments:
  *   fmt: Format string with optional format specifiers.
  *   ...: Variable number of arguments corresponding to the format specifiers.
+ *
+ * Format processing flow:
+ *  fmt ────────────────────────────────────────────────────────────────────────╮
+ *    │                                                                         │
+ *    v                                                                         │
+ *  % found? ──── Yes ───> Identify specifier ────> Process accordingly ────> Output
+ *    │                                                                         │
+ *    No                                                                        │
+ *    │                                                                         │
+ *    └──────────────────────────────────────────────────────────────────────> Output
  */
 void
 printf(const char* fmt, ...)

@@ -66,11 +66,44 @@
 #ifndef _KERN_ZALLOC_INTERNAL_H_
 #define _KERN_ZALLOC_INTERNAL_H_
 #include "../../sys/types.h"
+#include "kern_types.h"
 #include "zalloc.h"
-#include "zalloc_internal.h"
 
 #define KALLOC_MINALIGN (1 << KALLOC_LOG2_MINALIGN)
 #define KALLOC_DLUT_SIZE (2048 / KALLOC_MINALIGN)
+
+__BEGIN_DECLS
+
+#pragma GCC visibility push(hidden)
+
+typedef struct zone_magazine* zone_magazine_t;
+
+/*!
+ * @struct zone_depot
+ *
+ * @abstract
+ * Holds a list of full and empty magazines.
+ *
+ * @discussion
+ * The data structure is a "STAILQ" and an "SLIST" combined with counters
+ * to know their lengths in O(1). Here is a graphical example:
+ *
+ *      zd_full = 3
+ *      zd_empty = 1
+ * ╭─── zd_head
+ * │ ╭─ zd_tail
+ * │ ╰────────────────────────────────────╮
+ * │    ╭───────╮   ╭───────╮   ╭───────╮ v ╭───────╮
+ * ╰───>│███████┼──>│███████┼──>│███████┼──>│       ┼─> X
+ *      ╰───────╯   ╰───────╯   ╰───────╯   ╰───────╯
+ */
+struct zone_depot
+{
+	uint32_t zd_full;
+	uint32_t zd_empty;
+	zone_magazine_t zd_head;
+	zone_magazine_t* zd_tail;
+};
 
 typedef struct zone_packed_virtual_address
 {
@@ -284,7 +317,7 @@ struct zone
 #endif
 };
 
-typedef struct zone* zone_t;
+// typedef struct zone* zone_t;
 
 struct kheap_zones
 {
@@ -298,5 +331,7 @@ struct kheap_zones
 	 * k_zindex_start. */
 	zone_t* k_zone;
 };
+
+__END_DECLS
 
 #endif /* _KERN_ZALLOC_INTERNAL_H_ */

@@ -26,4 +26,5 @@ add_executable(MyKernel
         sys/kern/osfmk/kern_types.h
         sys/kern/osfmk/kern_types.h
         sys/kern/osfmk/kern_malloc.c
-        sys/kern/osfmk/zalloc.c)
+        sys/kern/osfmk/zalloc.c
+        sys/kern/osfmk/debug.h)

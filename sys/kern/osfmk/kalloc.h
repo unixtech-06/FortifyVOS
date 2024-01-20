@@ -57,8 +57,9 @@
 #ifndef _KERN_KALLOC_H_
 #define _KERN_KALLOC_H_
 
-#include "zalloc.h"
 #include "../../arch/riscv32/include/_types.h"
+#include "zalloc.h"
+#include "zalloc_internal.h"
 /*
  * This type is used so that kalloc_internal has good calling conventions
  * for callers who want to cheaply both know the allocated address

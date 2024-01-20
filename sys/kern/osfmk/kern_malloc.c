@@ -67,11 +67,33 @@
  * Version 2.0.
  */
 
+#include "debug.h"
 #include "assert.h"
 #include "kalloc.h"
 #include "zalloc.h"
 #include "zalloc_internal.h"
 
+/*
+ * __MALLOC_ext Function
+ *
+ * This function allocates memory. It can be used for different types of memory.
+ * It also lets you choose how to handle the allocation.
+ *
+ * Parameters:
+ *   size - How big the memory should be.
+ *   type - The kind of memory allocation.
+ *   flags - Special options for allocation (like waiting or not).
+ *   site - Information about where the allocation is happening.
+ *   heap - Where in memory to allocate from.
+ *
+ * Returns:
+ *   A pointer to the memory, or NULL if we can't allocate.
+ *
+ * Note:
+ *   If the type is wrong or size is zero, we return NULL.
+ *   If we can't allocate memory and the flags say not to wait, we return NULL.
+ *   If we can't allocate and the flags don't allow NULL, the program stops.
+ */
 static void *
 __MALLOC_ext(
 	size_t          size,
@@ -82,6 +104,7 @@ __MALLOC_ext(
 {
 	void    *addr = NULL;
 
+	/* Check type and size ──> Invalid? ──> Panic */
 	if (type >= M_LAST) {
 		panic("_malloc TYPE");
 	}
@@ -90,17 +113,20 @@ __MALLOC_ext(
 		return NULL;
 	}
 
+	/* Static assertions (not part of the flow chart but important for integrity) */
 	static_assert(sizeof(vm_size_t) == sizeof(size_t));
 	static_assert(M_WAITOK == Z_WAITOK);
 	static_assert(M_NOWAIT == Z_NOWAIT);
 	static_assert(M_ZERO == Z_ZERO);
 
+	/* Allocate ──> Success? ──> Return address */
 	addr = kalloc_ext(heap, size,
 	    flags & (M_WAITOK | M_NOWAIT | M_ZERO), site).addr;
 	if (__probable(addr)) {
 		return addr;
 	}
 
+	/* Check flags ──> NOWAIT/NULL? ──> Return NULL */
 	if (flags & (M_NOWAIT | M_NULL)) {
 		return NULL;
 	}
@@ -116,7 +142,7 @@ __MALLOC_ext(
 	 * dereference the pointer and trap anyway.  We may as well get a more
 	 * descriptive message out while we can.
 	 */
-//	panic("_MALLOC: kalloc returned NULL (potential leak), size %llu", (uint64_t) size);
+	panic("_MALLOC: kalloc returned NULL (potential leak), size %llu", (uint64_t) size);
 }
 
 void *
