@@ -23,6 +23,7 @@
  *===-----------------------------------------------------------------------===
  */
 #pragma once
+
 typedef __builtin_va_list va_list;
 #define va_start(ap, param) __builtin_va_start(ap, param)
 
