@@ -1,36 +1,50 @@
-const c = @cImport({
-    @cInclude("../../arch/riscv32/include/_types.h");
-    @cInclude("../../arch/riscv32/include/cpu.h");
-    @cInclude("../../lib/libkern/libkern.h");
+const kern = @cImport({
+    @cInclude("./osfmk/assert.h");
+    @cInclude("./osfmk/debug.h");
+
+    @cInclude("./osfmk/kalloc.h");
+    @cInclude("./osfmk/zalloc.h");
+
+    @cInclude("./malloc.h");
+
+    @cInclude("../lib/libkern/libkern.h");
 });
 
-extern var __free_ram: [*]u8; // char型のポインタとして宣言
-extern var __free_ram_end: [*]u8; // char型のポインタとして宣言
+export
+fn __MALLOC_ext(size: kern.size_t, kern_type: u32, flags: u32,
+                       site: ?*kern.vm_allocation_site_, heap: ?*kern.kalloc_heap_t) ?*void
+{
+    var addr: ?*void = null;
 
-// カーネルの他の部分で定義されているPanic関数を仮定
-extern fn Panic(msg: [*c]const u8) noreturn;
-
-pub fn alloc_pages(n: c.__uint32_t) ?c.__paddr_t {
-    const page_size = c.PAGE_SIZE; // cpu.hで定義されていると仮定
-
-    var next_paddr = @ptrToInt(__free_ram); // 直接ポインタを使用
-    const free_ram_end = @ptrToInt(__free_ram_end); // 直接ポインタを使用
-
-    const paddr = next_paddr;
-
-    next_paddr += n * page_size;
-
-    // メモリ不足の状態をチェック
-    if (next_paddr > free_ram_end) {
-        Panic("out of memory");
+    if (kern_type >= kern.M_LAST) {
+        kern.panic("_malloc TYPE");
     }
 
-    // 割り当てられたメモリをゼロクリア
-    var i: usize = 0;
-    while (i < n * page_size) {
-        __free_ram[i] = 0;
-        i += 1;
+    if (size == 0) {
+        return null;
     }
 
-    return @intToPtr(c.__paddr_t, paddr);
+    kern.static_assert(@sizeof(kern.vm_size_t) == @sizeof(kern.size_t));
+    kern.static_assert(kern.M_WAITOK == kern.Z_WAITOK);
+    kern.static_assert(kern.M_NOWAIT == kern.Z_NOWAIT);
+    kern.static_assert(kern.M_ZERO == kern.Z_ZERO);
+
+    addr = kern.kalloc_ext(heap, size, flags & (kern.M_WAITOK | kern.M_NOWAIT | kern.M_ZERO), site).addr;
+
+    if (kern.__probable(addr)) {
+        return addr;
+    }
+
+    if (flags & (kern.M_NOWAIT | kern.M_NULL)) {
+        return null;
+    }
+
+    kern.panic("_MALLOC: kalloc returned NULL (potential leak), size %llu", @intCast(u64, size));
+}
+
+pub export
+fn __MALLOC(size: kern.size_t, kern_type: u32, flags: u32,
+                       site: ?*kern.vm_allocation_site_, heap: ?*kern.kalloc_heap_t) ?*void
+{
+    return __MALLOC_ext(size, kern_type, flags, site, heap);
 }

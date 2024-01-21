@@ -59,6 +59,8 @@
 #ifndef _KERN_ASSERT_H_
 #define _KERN_ASSERT_H_
 
+#include "../../sys/cdefs.h"
+
 #define assert(ex)  \
 (__builtin_expect(!!((ex)), 1L) ? (void)0 : Assert(__FILE__, __LINE__, # ex))
 

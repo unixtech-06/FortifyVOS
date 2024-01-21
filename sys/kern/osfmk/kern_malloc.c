@@ -66,13 +66,15 @@
  * is included in support of clause 2.2 (b) of the Apple Public License,
  * Version 2.0.
  */
-
-#include "debug.h"
 #include "assert.h"
+#include "debug.h"
+
 #include "kalloc.h"
 #include "zalloc.h"
-#include "zalloc_internal.h"
 
+#include "../malloc.h"
+
+#include "../../lib/libkern/libkern.h"
 /*
  * __MALLOC_ext Function
  *
@@ -94,26 +96,25 @@
  *   If we can't allocate memory and the flags say not to wait, we return NULL.
  *   If we can't allocate and the flags don't allow NULL, the program stops.
  */
-static void *
-__MALLOC_ext(
-	size_t          size,
-	int             type,
-	int             flags,
-	vm_allocation_site_t *site,
-	kalloc_heap_t   heap)
+static void*
+__MALLOC_ext(size_t size, int type, int flags,
+			  vm_allocation_site_t* site, kalloc_heap_t heap)
 {
-	void    *addr = NULL;
+	void* addr = NULL;
 
 	/* Check type and size ──> Invalid? ──> Panic */
-	if (type >= M_LAST) {
+	if (type >= M_LAST)
+	{
 		panic("_malloc TYPE");
 	}
 
-	if (size == 0) {
+	if (size == 0)
+	{
 		return NULL;
 	}
 
-	/* Static assertions (not part of the flow chart but important for integrity) */
+	/* Static assertions (not part of the flow chart but important for
+	 * integrity) */
 	static_assert(sizeof(vm_size_t) == sizeof(size_t));
 	static_assert(M_WAITOK == Z_WAITOK);
 	static_assert(M_NOWAIT == Z_NOWAIT);
@@ -121,32 +122,48 @@ __MALLOC_ext(
 
 	/* Allocate ──> Success? ──> Return address */
 	addr = kalloc_ext(heap, size,
-	    flags & (M_WAITOK | M_NOWAIT | M_ZERO), site).addr;
-	if (__probable(addr)) {
+		flags & (M_WAITOK | M_NOWAIT | M_ZERO), site).addr;
+	if (__probable(addr))
+	{
 		return addr;
 	}
 
 	/* Check flags ──> NOWAIT/NULL? ──> Return NULL */
-	if (flags & (M_NOWAIT | M_NULL)) {
+	if (flags & (M_NOWAIT | M_NULL))
+	{
 		return NULL;
 	}
 
 	/*
 	 * We get here when the caller told us to block waiting for memory, but
-	 * kalloc said there's no memory left to get.  Generally, this means there's a
-	 * leak or the caller asked for an impossibly large amount of memory. If the caller
-	 * is expecting a NULL return code then it should explicitly set the flag M_NULL.
-	 * If the caller isn't expecting a NULL return code, we just panic. This is less
-	 * than ideal, but returning NULL when the caller isn't expecting it doesn't help
-	 * since the majority of callers don't check the return value and will just
+	 * kalloc said there's no memory left to get.  Generally, this means
+	 * there's a leak or the caller asked for an impossibly large amount of
+	 * memory. If the caller is expecting a NULL return code then it should
+	 * explicitly set the flag M_NULL. If the caller isn't expecting a NULL
+	 * return code, we just panic. This is less than ideal, but returning
+	 * NULL when the caller isn't expecting it doesn't help since the
+	 * majority of callers don't check the return value and will just
 	 * dereference the pointer and trap anyway.  We may as well get a more
 	 * descriptive message out while we can.
 	 */
-	panic("_MALLOC: kalloc returned NULL (potential leak), size %llu", (uint64_t) size);
+	panic("_MALLOC: kalloc returned NULL (potential leak), size %llu",
+	      (uint64_t)size);
 }
 
-void *
-__MALLOC(size_t size, int type, int flags, vm_allocation_site_t *site)
+void*
+__MALLOC(size_t size, int type, int flags, vm_allocation_site_t* site)
 {
 	return __MALLOC_ext(size, type, flags, site, KHEAP_DEFAULT);
+}
+
+void
+_FREE_external(void* addr, int type);
+void
+_FREE_external(void* addr, int type __unused)
+{
+	/*
+	 * hashinit and other functions allocate on behalf of kexts and do not
+	 * have a matching hashdestroy, so we sadly have to allow this for now.
+	 */
+	kheap_free_addr(KHEAP_ANY, addr);
 }

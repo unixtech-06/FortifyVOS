@@ -1440,3 +1440,13 @@
 #define __options_closed_decl(_name, _type, ...) \
 	        typedef _type _name; enum __VA_ARGS__ __enum_closed __enum_options
 #endif
+
+/*
+ * Check if __probable and __improbable have already been defined elsewhere.
+ * These macros inform the compiler (and humans) about which branches are likely
+ * to be taken.
+ */
+#if !defined(__probable) && !defined(__improbable)
+#define __probable(x)   __builtin_expect(!!(x), 1)
+#define __improbable(x) __builtin_expect(!!(x), 0)
+#endif /* !defined(__probable) && !defined(__improbable) */

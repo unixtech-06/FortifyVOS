@@ -31,7 +31,6 @@
 
 #ifndef _KERN_KERN_TYPES_H_
 #define _KERN_KERN_TYPES_H_
-#include "zalloc_internal.h"
 
 #define         ZONE_NULL               ((zone_t) 0)
 

@@ -57,9 +57,12 @@
 #ifndef _KERN_KALLOC_H_
 #define _KERN_KALLOC_H_
 
-#include "../../arch/riscv32/include/_types.h"
+#include "../../arch/riscv32/include/vm_types.h"
+
 #include "zalloc.h"
-#include "zalloc_internal.h"
+
+#define KHEAP_ANY  ((struct kalloc_heap *)NULL)
+
 /*
  * This type is used so that kalloc_internal has good calling conventions
  * for callers who want to cheaply both know the allocated address
@@ -77,5 +80,14 @@ typedef struct kalloc_heap {
 	struct kalloc_heap *kh_next;
 	zone_kheap_id_t     kh_heap_id;
 } *kalloc_heap_t;
+
+#define kheap_free_addr(heap, elem) ({ \
+_Static_assert(sizeof(elem) == sizeof(void *), "elem isn't pointer sized"); \
+__auto_type __kfree_heap = (heap); \
+__auto_type __kfree_eptr = &(elem); \
+__auto_type __kfree_elem = *__kfree_eptr; \
+*__kfree_eptr = (__typeof__(__kfree_elem))NULL; \
+(kheap_free_addr)(__kfree_heap, (void *)__kfree_elem); \
+})
 
 #endif  /* _KERN_KALLOC_H_ */

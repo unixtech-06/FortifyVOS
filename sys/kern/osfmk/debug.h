@@ -85,6 +85,8 @@ typedef __builtin_va_list va_list;
 
 #include "kern_types.h"
 
+#include "../../sys/cdefs.h"
+
 void panic_trap_to_debugger(const char *panic_format_str, va_list *panic_args,
     unsigned int reason, void *ctx, uint64_t panic_options_mask, void *panic_data,
     unsigned long panic_caller) __dead2 __printflike(1, 0);
@@ -102,6 +104,7 @@ void panic_trap_to_debugger(const char *panic_format_str, va_list *panic_args,
  * The function collects the arguments, formats the panic message, and then
  * calls 'panic_trap_to_debugger' to handle the actual panic process.
  */
+__abortlike __printflike(1, 2)
 inline void
 panic(const char *str, ...)
 {

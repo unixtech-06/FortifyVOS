@@ -65,9 +65,11 @@
 
 #ifndef _KERN_ZALLOC_INTERNAL_H_
 #define _KERN_ZALLOC_INTERNAL_H_
+
 #include "../../sys/types.h"
-#include "kern_types.h"
+
 #include "zalloc.h"
+#include "kern_types.h"
 
 #define KALLOC_MINALIGN (1 << KALLOC_LOG2_MINALIGN)
 #define KALLOC_DLUT_SIZE (2048 / KALLOC_MINALIGN)

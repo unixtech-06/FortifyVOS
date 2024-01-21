@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2020 Apple Inc. All rights reserved.
+ * Copyright (c) 2000-2016 Apple Computer, Inc. All rights reserved.
  *
  * @APPLE_OSREFERENCE_LICENSE_HEADER_START@
  *
@@ -30,7 +30,7 @@
  */
 /*
  * Mach Operating System
- * Copyright (c) 1991,1990,1989,1988,1987 Carnegie Mellon University
+ * Copyright (c) 1991,1990,1989,1988 Carnegie Mellon University
  * All Rights Reserved.
  *
  * Permission to use, copy, modify and distribute this software and its
@@ -55,38 +55,88 @@
  */
 /*
  */
+
 /*
- *	File:	zalloc.h
+ *	File:	vm_types.h
  *	Author:	Avadis Tevanian, Jr.
- *	Date:	 1985
+ *	Date: 1985
  *
+ *	Header file for VM data types.  I386 version.
  */
+/*
+ * A vm_size_t is the proper type for e.g.
+ * expressing the difference between two
+ * vm_offset_t entities.
+ */
+#ifndef _MACH_RISCV32_VM_TYPES_H_
+#define _MACH_RISCV32_VM_TYPES_H_
 
-#ifndef _KERN_ZALLOC_H_
-#define _KERN_ZALLOC_H_
+#include "_types.h"
 
-#include "../../arch/riscv32/include/vm_types.h"
+/*
+ * natural_t and integer_t are Mach's legacy types for machine-
+ * independent integer types (unsigned, and signed, respectively).
+ * Their original purpose was to define other types in a machine/
+ * compiler independent way.
+ *
+ * They also had an implicit "same size as pointer" characteristic
+ * to them (i.e. Mach's traditional types are very ILP32 or ILP64
+ * centric).  We support x86 ABIs that do not follow either of
+ * these models (specifically LP64).  Therefore, we had to make a
+ * choice between making these types scale with pointers or stay
+ * tied to integers.  Because their use is predominantly tied to
+ * to the size of an integer, we are keeping that association and
+ * breaking free from pointer size guarantees.
+ *
+ * New use of these types is discouraged.
+ */
+typedef __darwin_natural_t natural_t;
+typedef int integer_t;
 
-#include "kern_types.h"
-#include "kalloc.h"
+/*
+ * A vm_offset_t is a type-neutral pointer,
+ * e.g. an offset into a virtual memory space.
+ */
+#ifdef __LP64__
+typedef uintptr_t vm_offset_t;
+#else  /* __LP64__ */
+typedef natural_t vm_offset_t;
+#endif /* __LP64__ */
 
-#include "../../sys/cdefs.h"
+/*
+ * A vm_size_t is the proper type for e.g.
+ * expressing the difference between two
+ * vm_offset_t entities.
+ */
+#ifdef __LP64__
+typedef uintptr_t vm_size_t;
+#else  /* __LP64__ */
+typedef natural_t vm_size_t;
+#endif /* __LP64__ */
 
-__options_decl(zalloc_flags_t, uint32_t, {
-	// values smaller than 0xff are shared with the M_* flags from BSD MALLOC
-	Z_WAITOK        = 0x0000,
-	Z_NOWAIT        = 0x0001,
-	Z_NOPAGEWAIT    = 0x0002,
-	Z_ZERO          = 0x0004,
-	Z_NOFAIL        = 0x8000,
-});
+typedef __uint16_t vm_tag_t;
 
-__enum_decl(zone_kheap_id_t, uint32_t, {
-	KHEAP_ID_NONE,
-	KHEAP_ID_DEFAULT,
-	KHEAP_ID_DATA_BUFFERS,
-	KHEAP_ID_KEXT,
-});
+struct vm_allocation_total
+{
+	vm_tag_t tag;
+	__uint64_t total;
+};
 
-typedef struct zone_stats *__zpercpu, zone_stats_t;
-#endif  /* _KERN_ZALLOC_H_ */
+struct vm_allocation_site
+{
+	__uint64_t total;
+#if DEBUG || DEVELOPMENT
+	uint64_t peak;
+#endif /* DEBUG || DEVELOPMENT */
+	__uint64_t mapped;
+	__int16_t refcount;
+	vm_tag_t tag;
+	__uint16_t flags;
+	__uint16_t subtotalscount;
+	struct vm_allocation_total subtotals[0];
+	/* char      name[0]; -- this is placed after subtotals, see KA_NAME()
+	 */
+};
+typedef struct vm_allocation_site vm_allocation_site_t;
+
+#endif /* _MACH_RISCV32_VM_TYPES_H_ */
