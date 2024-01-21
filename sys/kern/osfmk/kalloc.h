@@ -70,7 +70,6 @@ struct kalloc_result {
 	vm_size_t size;
 };
 
-
 typedef struct kalloc_heap {
 	struct kheap_zones *kh_zones;
 	zone_stats_t        kh_stats;

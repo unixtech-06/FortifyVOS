@@ -1192,7 +1192,6 @@
 #ifdef KERNEL
 #define __DARWIN_ALIAS_STARTING(_mac, _iphone, x)
 #else
-#include <sys/_symbol_aliasing.h>
 
 #if defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__)
 #define __DARWIN_ALIAS_STARTING(_mac, _iphone, x)   __DARWIN_ALIAS_STARTING_IPHONE_##_iphone(x)
@@ -1262,7 +1261,6 @@
 #ifdef KERNEL
 #define __POSIX_C_DEPRECATED(ver)
 #else
-#include <sys/_posix_availability.h>
 
 #define __POSIX_C_DEPRECATED(ver) ___POSIX_C_DEPRECATED_STARTING_##ver
 #endif
@@ -1384,29 +1382,6 @@
 #elif !defined(__sys_cdefs_arch_unknown__) && defined(__x86_64__)
 #elif !defined(__sys_cdefs_arch_unknown__) && defined(__arm__)
 #elif !defined(__sys_cdefs_arch_unknown__) && defined(__arm64__)
-#else
-#error Unsupported architecture
-#endif
-
-#ifdef XNU_KERNEL_PRIVATE
-/*
- * Selectively ignore cast alignment warnings
- */
-#define __IGNORE_WCASTALIGN(x) _Pragma("clang diagnostic push")                     \
-	                       _Pragma("clang diagnostic ignored \"-Wcast-align\"") \
-	                       x;                                                   \
-	                       _Pragma("clang diagnostic pop")
-#endif
-
-#if defined(PRIVATE) || defined(KERNEL)
-/*
- * Check if __probable and __improbable have already been defined elsewhere.
- * These macros inform the compiler (and humans) about which branches are likely
- * to be taken.
- */
-#if !defined(__probable) && !defined(__improbable)
-#define __probable(x)   __builtin_expect(!!(x), 1)
-#define __improbable(x) __builtin_expect(!!(x), 0)
 #endif /* !defined(__probable) && !defined(__improbable) */
 
 #if defined(__cplusplus)
@@ -1465,5 +1440,3 @@
 #define __options_closed_decl(_name, _type, ...) \
 	        typedef _type _name; enum __VA_ARGS__ __enum_closed __enum_options
 #endif
-
-#endif /* !_CDEFS_H_ */

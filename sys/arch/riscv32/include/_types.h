@@ -268,6 +268,11 @@ typedef unsigned int natural_t;
 typedef __uint16_t vm_tag_t;
 typedef natural_t               vm_size_t;
 
+struct vm_allocation_total {
+	vm_tag_t tag;
+	__uint64_t total;
+};
+
 struct vm_allocation_site {
 	__uint64_t  total;
 #if DEBUG || DEVELOPMENT
